@@ -16,4 +16,6 @@ npm run build
 ```
 
 ### 项目原型地址
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+https://3g.baobeigezi.com/index
+```
