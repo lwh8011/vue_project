@@ -1,19 +1,19 @@
-# project
+# 项目
 
-## Project setup
+## 项目设置
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 项目运行
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 项目生产
 ```
 npm run build
 ```
 
-### Customize configuration
+### 项目原型地址
 See [Configuration Reference](https://cli.vuejs.org/config/).
