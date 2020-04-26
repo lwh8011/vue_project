@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Category from '../views/Category.vue'
+import Cart from '../views/Cart.vue'
+import Mine from '../views/Mine.vue'
+import Detail from '../views/Detail.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +12,39 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+	meta:{
+		showtabbar:true
+	}
+  },
+  {
+    path: '/category',
+    name: 'Category',
+    component: Category,
+	meta:{
+		showtabbar:true
+	}
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart,
+	meta:{
+		showtabbar:true
+	}
+  },
+  {
+    path: '/mine',
+    name: 'Mine',
+    component: Mine,
+	meta:{
+		showtabbar:true
+	}
+  },
+  {
+    path: '/detail',
+    name: 'Detail',
+    component: Detail
   },
   {
     path: '/about',
