@@ -5,8 +5,9 @@
 	<van-search
 	  v-model="value"
 	  shape="round"
+	  disabled
+	  @click="onSearch"
 	  background="#f6f6f6"
-	  placeholder="请输入搜索关键词"
 	/>
 	<HomeTable></HomeTable>
   </div>
@@ -27,6 +28,11 @@ export default {
 	  return{
 		  value:""
 	  }
+  },
+  methods:{
+	  onSearch(){
+		  this.$router.push("/Search")
+	  }
   }
 }
 </script>
@@ -34,7 +40,20 @@ export default {
 	.home{
 		.van-search__content--round{
 			background-color: #fff;
+			
 		}
+		.van-search{
+			.van-cell{
+				font-size: 24px;
+				.van-field__left-icon{
+					.van-icon .van-field__left-icon{
+					font-size: 24px;
+				}
+				}
+			}
+			
+		}
+		
 		background-color: #f6f6f6;
 	}
 </style>

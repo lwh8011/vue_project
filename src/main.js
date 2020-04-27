@@ -8,6 +8,9 @@ import 'vant/lib/index.css';
 Vue.use(Vant);
 // 引入js
 import './assets/js/flexible.min.js'
+//注册API
+import * as api from './api'
+Vue.prototype.$api = api
 Vue.config.productionTip = false
 
 new Vue({

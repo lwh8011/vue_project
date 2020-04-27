@@ -5,6 +5,9 @@ import Category from '../views/Category.vue'
 import Cart from '../views/Cart.vue'
 import Mine from '../views/Mine.vue'
 import Detail from '../views/Detail.vue'
+import Search from '../views/Search.vue'
+import SearchResult from '../views/SearchResult.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +48,24 @@ Vue.use(VueRouter)
     path: '/detail',
     name: 'Detail',
     component: Detail
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+	meta:{
+		showtabbar:true
+	}
+  },
+  {
+    path: '/searchresult',
+    name: 'SearchResult',
+    component: SearchResult
   },
   {
     path: '/about',

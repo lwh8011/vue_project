@@ -5,7 +5,7 @@
 			<div v-if="good.positionCode=='P12T1'">
 				<van-swipe :autoplay="3000">
 				  <van-swipe-item v-for="(image, index2) in good.positionList" :key="index2">
-				    <img :style="{width:'350px',height:'140px'}" v-lazy="image.bigImage" />
+				    <img :style="{width:'350px',height:'140px',borderRadius:'8px'}" v-lazy="image.bigImage" />
 				  </van-swipe-item>
 				</van-swipe>
 			</div>
@@ -62,6 +62,9 @@
 			<!-- 每日精选end -->
 			<!-- 每日拼团 -->
 			<div v-else-if="good.positionCode=='P12T6'" class="groups">
+				<div class="base">
+					<span>每日拼团</span>
+				</div>
 				<div class="group" v-for="(group,index) in good.positionList">
 					<div class="left">
 						<img :src="group.goodsImage" alt="">
@@ -255,16 +258,16 @@
 						<img :src="item.bigImage" alt="">
 					</div>
 					<div class="right">
-						<div class="title">{{item.advTitle}}</div>
+						<div class="van-ellipsis">{{item.advTitle}}</div>
 						<div class="desc">{{item.cmsArticleKeyword}}</div>
 						<div class="comment">
 							<div class="zan">
 								<img src="../assets/images/zan.png" alt="">
-								<span>{{item.voteCount}}</span>
+								<span>&nbsp;{{item.voteCount}}</span>
 							</div>
 							<div class="look">
 								<img src="../assets/images/watchIcon.png" alt="">
-								<span>{{item.viewCount}}</span>
+								<span>&nbsp;{{item.viewCount}}</span>
 							</div>
 						</div>
 					</div>
@@ -406,11 +409,12 @@
 		}
 		.groups{
 			margin: 0 5px;
-			background-color: #fff;
+			
 			.group{
 				display: flex;
 				width: 100%;
 				padding: 10px;
+				background-color: #fff;
 				border-bottom: 1px solid #f2ecfe;
 				.left{
 					width: 35%;
@@ -826,6 +830,55 @@
 				}
 			}
 		}
-		
+		.article{
+			margin: 0 5px;
+			.articles{
+				display: flex;
+				padding: 10px;
+				border-top: 1px solid #e4e4e4;
+				background-color: #fff;
+				.left{
+					width: 25%;
+					text-align: center;
+					img{
+						width:77px;
+						height: 77px;
+						vertical-align: middle;
+					}
+				}
+				.right{
+					width: 75%;
+					.van-ellipsis{
+						font-size: 14px;
+						color: #313131;
+						text-align: start;
+					}
+					.desc{
+						font-size: 14px;
+						color: #999;
+						text-align: start;
+						margin-top: 5px;
+					}
+					.comment{
+						display: flex;
+						margin-top: 13px;
+						.zan,.look{	
+							img{
+								width: 16px;
+								height: 16px;
+								vertical-align: middle;
+							}
+							span{
+								font-size: 14px;
+								color: #999;
+							}
+						}
+						.look{
+							margin-left: 10px;
+						}
+					}
+				}
+			}
+		}
 	}
 </style>
