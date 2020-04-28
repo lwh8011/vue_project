@@ -11,6 +11,11 @@ import './assets/js/flexible.min.js'
 //注册API
 import * as api from './api'
 Vue.prototype.$api = api
+//注册jscookie
+import JsCookie from 'js-cookie'
+Vue.prototype.$JsCookie = JsCookie
+
+
 Vue.config.productionTip = false
 
 new Vue({

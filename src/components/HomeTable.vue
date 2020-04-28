@@ -50,12 +50,12 @@
 						<img :src="item.bigImage" alt="">
 					</div>
 					<div class="bottom">
-						<div class="product" v-for="(pro,index) in item.productList">
+						<router-link :to="{name:'Detail',params:{id:pro.id}}" class="product" v-for="(pro,index) in item.productList">
 							<img :src="pro.goodsImage" alt="">
 							<div class="van-ellipsis">{{pro.name}}</div>
 							<div class="del">¥&nbsp;{{pro.markerPrice}}</div>
 							<div class="price">¥&nbsp;{{pro.salePrice}}</div>
-						</div>
+						</router-link>
 					</div>
 				</div>
 			</div>
@@ -296,7 +296,7 @@
 		created(){
 			// console.log(data[0].data.advList)
 			this.goods = data[0].data.advList
-			console.log(this.goods)
+			// console.log(this.goods)
 		}
 	}
 </script>

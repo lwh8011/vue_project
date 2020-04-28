@@ -124,6 +124,7 @@
 					border-radius: 8px;
 					background-color: #fff;
 					img{
+						width: 100%;
 						border-radius: 8px;
 					}
 					.van-multi-ellipsis--l2{

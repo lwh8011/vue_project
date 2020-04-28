@@ -1,3 +1,4 @@
+import JsCookie from 'js-cookie'
 import axios from 'axios'
 //引入mockdata.js
 import './mockdata.js'
@@ -7,8 +8,28 @@ axios.defaults.baseURL = 'https://3g.baobeigezi.com'
 let searchAPI = (data)=>{
 	return axios.post("index/search.php",data)
 }
+//详情页
+let getProductAPI = (data)=>{
+	return axios.get("index/product.php",{
+		params:{
+			id:data.id
+		}
+	})
+}
 
+
+//登录
+let loginAPI = (data)=>{
+	return axios.post("index/login.php",data)
+}
+//注册
+let registAPI = (data)=>{
+	return axios.post("index/regist.php",data)
+}
 
 export {
-	searchAPI
+	searchAPI,
+	loginAPI,
+	registAPI,
+	getProductAPI
 }

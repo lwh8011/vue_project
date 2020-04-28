@@ -8,6 +8,8 @@ import Detail from '../views/Detail.vue'
 import Search from '../views/Search.vue'
 import SearchResult from '../views/SearchResult.vue'
 import Login from '../views/Login.vue'
+import Regist from '../views/Regist.vue'
+import JsCookie from 'js-cookie'
 
 Vue.use(VueRouter)
 
@@ -33,7 +35,8 @@ Vue.use(VueRouter)
     name: 'Cart',
     component: Cart,
 	meta:{
-		showtabbar:true
+		showtabbar:true,
+		auth:true
 	}
   },
   {
@@ -41,11 +44,12 @@ Vue.use(VueRouter)
     name: 'Mine',
     component: Mine,
 	meta:{
-		showtabbar:true
+		showtabbar:true,
+		auth:true
 	}
   },
   {
-    path: '/detail',
+    path: '/detail/:id',
     name: 'Detail',
     component: Detail
   },
@@ -53,6 +57,11 @@ Vue.use(VueRouter)
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/regist',
+    name: 'Regist',
+    component: Regist
   },
   {
     path: '/search',
@@ -78,7 +87,29 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  //处理单页面中,多个路由都有滚动条位置变化
+  scrollBehavior:function(t,f,s){
+	  return{
+		  x:0,
+		  y:0
+		  
+	  }
+  }
+})
+
+//导航守卫
+router.beforeEach((t,f,n)=>{
+	if(t.meta.auth){
+		let logined = JsCookie.get("username");
+		if(!logined){
+			n("/login?next="+t.path)
+		}else{
+			n();
+		}
+	}else{
+		n();
+	}
 })
 
 export default router
