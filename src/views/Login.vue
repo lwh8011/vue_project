@@ -12,7 +12,7 @@
 					<img src="../assets/images/checkCode.png" alt="">
 					<input type="number" name="sms" v-model="sms" placeholder="请输入验证码">
 				</div>
-				<van-button round size="small" @click="sendsms" style="background: inherit;" color="#fff" plain>发送验证码</van-button>
+				<van-button round size="small" @click="sendsms" style="background: inherit;margin-right: 20px;" color="#fff" plain>发送验证码</van-button>
 			</div>
 			<button class="btn" @click="login(1)">登录</button>
 			<button class="btns" @click="changeType(2)">用户名登录</button>
