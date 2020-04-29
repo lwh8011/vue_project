@@ -158,43 +158,75 @@
 				this.$router.push("/")
 			},
 			onClickService(){
-				this.$toast('点击了客服')
+				let logined = this.$JsCookie.get("username");
+				if(logined){
+					this.$toast('点击了客服')
+				}else{
+					this.$toast('请先登录!')
+				}
+				
 			},
 			onClickLike(){
-				this.$toast('点击了收藏')
+				let logined = this.$JsCookie.get("username");
+				if(logined){
+					this.$toast('点击了收藏')
+				}else{
+					this.$toast('请先登录!')
+				}
+				
 			},
 			onClickCart(){
 				this.$router.push("/cart")
 			},
 			onBuyClicked(good){
-				this.$toast('点击了购买')
+				let logined = this.$JsCookie.get("username");
+				if(logined){
+					this.$toast('点击了购买')
+				}else{
+					this.$toast('请先登录!')
+					this.$router.push("/login")
+				}
 			},
 			onAddCartClicked(good){
 				// console.log("=====",good)
-				this.$store.dispatch("addGoodAsync",{
-					goodid:this.selectGood.id,
-					skuid:this.selectGood.id,
-					name:this.selectGood.brandName,
-					price:this.selectGood.salePrice,
-					desc:this.selectGood.name,
-					image:this.selectGood.goodsDetail.imgs[0],
-					num:good.selectedNum
-				}).then(()=>{
-					this.$toast('成功加入购物车'); 
-				})
+				let logined = this.$JsCookie.get("username");
+				if(logined){
+					this.$store.dispatch("addGoodAsync",{
+						goodid:this.selectGood.id,
+						skuid:this.selectGood.id,
+						name:this.selectGood.brandName,
+						price:this.selectGood.salePrice,
+						desc:this.selectGood.name,
+						image:this.selectGood.goodsDetail.imgs[0],
+						num:good.selectedNum
+					}).then(()=>{
+						this.$toast('成功加入购物车'); 
+					})
+				}else{
+					this.$toast('请先登录!')
+					this.$router.push("/login")
+				}
+				
 			},
 			AddCartClicked(){
-				this.$store.dispatch("addGoodAsync",{
-					goodid:this.selectGood.id,
-					skuid:this.selectGood.id,
-					name:this.selectGood.brandName,
-					price:this.selectGood.salePrice,
-					desc:this.selectGood.name,
-					image:this.selectGood.goodsDetail.imgs[0],
-					num:1
-				}).then(()=>{
-					this.$toast('成功加入购物车'); 
-				})
+				let logined = this.$JsCookie.get("username");
+				if(logined){
+					this.$store.dispatch("addGoodAsync",{
+						goodid:this.selectGood.id,
+						skuid:this.selectGood.id,
+						name:this.selectGood.brandName,
+						price:this.selectGood.salePrice,
+						desc:this.selectGood.name,
+						image:this.selectGood.goodsDetail.imgs[0],
+						num:1
+					}).then(()=>{
+						this.$toast('成功加入购物车'); 
+					})
+				}else{
+					this.$toast('请先登录!')
+					this.$router.push("/login")
+				}
+				
 			},
 			onSkuSelect(good){
 				console.log("======",good)

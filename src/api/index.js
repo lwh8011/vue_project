@@ -19,7 +19,7 @@ let getProductAPI = (data)=>{
 
 //发送验证码
 let sendSMSAPI = (data)=>{
-	return axios.post("mi/sms.php",data)
+	return axios.post("index/sms.php",data)
 }
 //登录
 let loginAPI = (data)=>{

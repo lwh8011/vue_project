@@ -31,10 +31,10 @@
 							<span>{{item.advDescribes}}</span>
 						</div>
 						<div class="bottom">
-							<a href="#" v-for="(pic,index) in item.productList">
+							<router-link :to="{name:'Detail',params:{id:pic.id}}" v-for="(pic,index) in item.productList">
 								<img :src="pic.goodsImage" alt="">
 								<span>¥{{pic.salePrice}}</span>
-							</a>
+							</router-link>
 						</div>
 					</div>
 				</div>
@@ -43,29 +43,35 @@
 				<img v-for="imgs in good.positionList" :src="imgs.bigImage" alt="">
 			</div>
 			<!-- 新人超值专享end -->
-			<!-- 每日精选 -->
+			<!-- 精选活动 -->
 			<div v-else-if="good.positionCode=='P12T9'" class="handpick">
-				<div class="activity" v-for="(item,index) in good.positionList">
-					<div class="top">
-						<img :src="item.bigImage" alt="">
-					</div>
-					<div class="bottom">
-						<router-link :to="{name:'Detail',params:{id:pro.id}}" class="product" v-for="(pro,index) in item.productList">
-							<img :src="pro.goodsImage" alt="">
-							<div class="van-ellipsis">{{pro.name}}</div>
-							<div class="del">¥&nbsp;{{pro.markerPrice}}</div>
-							<div class="price">¥&nbsp;{{pro.salePrice}}</div>
-						</router-link>
+				<div class="base">
+					<span>精选活动</span>
+				</div>
+				<div class="actives">
+					<div class="activity" v-for="(item,index) in good.positionList">
+						<div class="top">
+							<img :src="item.bigImage" alt="">
+						</div>
+						<div class="bottom">
+							<router-link :to="{name:'Detail',params:{id:pro.id}}" class="product" v-for="(pro,index) in item.productList">
+								<img :src="pro.goodsImage" alt="">
+								<div class="van-ellipsis">{{pro.name}}</div>
+								<div class="del">¥&nbsp;{{pro.markerPrice}}</div>
+								<div class="price">¥&nbsp;{{pro.salePrice}}</div>
+							</router-link>
+						</div>
 					</div>
 				</div>
+				
 			</div>
-			<!-- 每日精选end -->
+			<!-- 精选活动end -->
 			<!-- 每日拼团 -->
 			<div v-else-if="good.positionCode=='P12T6'" class="groups">
 				<div class="base">
 					<span>每日拼团</span>
 				</div>
-				<div class="group" v-for="(group,index) in good.positionList">
+				<router-link :to="{name:'Detail',params:{id:group.id}}" class="group" v-for="(group,index) in good.positionList">
 					<div class="left">
 						<img :src="group.goodsImage" alt="">
 					</div>
@@ -80,7 +86,7 @@
 							<van-button round type="danger" size="mini" color="#bb361f">马上拼团</van-button>
 						</div>
 					</div>
-				</div>
+				</router-link>
 			</div>
 			<!-- 每日拼团end -->
 			<!-- 广告 -->
@@ -108,14 +114,14 @@
 					<span>精选分类</span>
 				</div>
 					<div class="content clearfixed" >
-						<div class="left clearfixed" v-for="(item,index) in good.positionList" v-if="index==0">
+						<router-link :to="{name:'Detail',params:{id:item.id}}" class="left clearfixed" v-for="(item,index) in good.positionList" v-if="index==0">
 							<div class="title">
 								{{item.advTitle}}
 							</div>
 							<div class="van-ellipsis">{{item.advDescribes}}</div>
 							<img :src="item.bigImage" alt="">
-						</div>
-							<div class="head clearfixed" v-else-if="index==1">
+						</router-link>
+							<router-link :to="{name:'Detail',params:{id:item.id}}" class="head clearfixed" v-else-if="index==1">
 								<div class="r-left">
 									<div class="title">
 										{{item.advTitle}}
@@ -123,8 +129,8 @@
 									<div class="van-ellipsis">{{item.advDescribes}}</div>
 								</div>
 								<img :src="item.bigImage" alt="">
-							</div>
-							<div class="foot clearfixed" v-else-if="index==2">
+							</router-link>
+							<router-link :to="{name:'Detail',params:{id:item.id}}" class="foot clearfixed" v-else-if="index==2">
 								<div class="r-left">
 									<div class="title">
 										{{item.advTitle}}
@@ -132,14 +138,14 @@
 									<div class="van-ellipsis">{{item.advDescribes}}</div>
 								</div>
 								<img :src="item.bigImage" alt="">
-							</div>
-						<div v-else class="ele clearfixed">
+							</router-link>
+						<router-link :to="{name:'Detail',params:{id:item.id}}" v-else class="ele clearfixed">
 								<img :src="item.bigImage" alt="">
 								<div class="title">
 									{{item.advTitle}}
 								</div>
 								<div class="van-ellipsis">{{item.advDescribes}}</div>
-						</div>
+						</router-link>
 					</div>
 			</div>
 			<!-- 精选分类end -->
@@ -149,28 +155,28 @@
 					<span>全球榜单</span>
 				</div>
 				<div class="global" v-for="(item,index) in good.positionList">
-					<div class="one" v-for="(items,index) in item.productList" v-if="index==0">
+					<router-link :to="{name:'Detail',params:{id:items.id}}" class="one" v-for="(items,index) in item.productList" v-if="index==0">
 						<img :src="items.goodsImage" alt="">
 						<div class="price">
 							<span>¥&nbsp;{{items.salePrice}}</span>&nbsp;
 							<span>¥&nbsp;{{items.markerPrice}}</span>
 						</div>
-					</div>
-					<div class="one" v-else-if="index==1">
+					</router-link>
+					<router-link :to="{name:'Detail',params:{id:items.id}}" class="one" v-else-if="index==1">
 						<img :src="items.goodsImage" alt="">
 						<div class="price">
 							<span>¥&nbsp;{{items.salePrice}}</span>&nbsp;
 							<span>¥&nbsp;{{items.markerPrice}}</span>
 						</div>
-					</div>
-					<div class="one" v-else-if="index==2">
+					</router-link>
+					<router-link :to="{name:'Detail',params:{id:items.id}}" class="one" v-else-if="index==2">
 						<img :src="items.goodsImage" alt="">
 						<div class="price">
 							<span>¥&nbsp;{{items.salePrice}}</span>&nbsp;
 							<span>¥&nbsp;{{items.markerPrice}}</span>
 						</div>
-					</div>
-					<div class="group" v-else>
+					</router-link>
+					<router-link :to="{name:'Detail',params:{id:items.id}}" class="group" v-else>
 						<div class="left">
 							<img :src="items.goodsImage" alt="">
 						</div>
@@ -184,7 +190,7 @@
 								<van-button round type="danger" size="mini" color="#bb361f">马上抢</van-button>
 							</div>
 						</div>
-					</div>
+					</router-link>
 				</div>
 			</div>
 			<!-- 全球榜单end -->
@@ -206,19 +212,19 @@
 								<div class="right">
 									<div class="title">
 										<span>{{item.advTitle}}</span>
-										<van-button round type="danger" style="color: #fff;" size="mini">进入专场&gt;</van-button>
+										<div class="btn">进入专场&gt;</div>
 									</div>
 									<div class="van-ellipsis">{{item.advDescribes}}</div>
 								</div>
 							</div>
 							<div class="con-f">
-								<div class="box" v-for="(ele,index) in item.productList">
+								<router-link :to="{name:'Detail',params:{id:ele.id}}" class="box" v-for="(ele,index) in item.productList">
 									<img :src="ele.goodsImage" alt="">
 									<div class="van-ellipsis">{{ele.name}}</div>
 									<div class="price">
 										¥&nbsp;{{ele.salePrice}}
 									</div>
-								</div>
+								</router-link>
 							</div>
 						</div>
 					</div>
@@ -274,9 +280,9 @@
 				</div>
 			</div>
 			<!-- 育儿频道首页文章end -->
-			<div v-else>
+			<!-- <div v-else>
 				需要显示一个组件{{good.positionCode}}
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
@@ -484,51 +490,54 @@
 			}
 		}
 		.handpick{
-			margin: 10px 5px 0;
-			.activity{
-				margin-top: 10px;
-				.top{
-					img{
-						width: 100%;
-						border-radius: 8px 8px 0 0;
-					}
-				}
-				.bottom{
-					display: flex;
-					background-color: #fff;
-					white-space: nowrap;
-					overflow: scroll;
-					border-radius: 0 0 8px 8px;
-					.product{
-						width: 100px;
-						padding-bottom: 10px;
-						border-right: 1px solid #e5e5e5;
-						text-align: center;
+			.actives{
+				margin: 0 5px;
+				.activity{
+					margin-top: 10px;
+					.top{
 						img{
-							width: 95px;
-							height: 95px;
-							vertical-align: middle;
-						}
-						.van-ellipsis{
-							font-size: 12px;
-							color: #313131;
-							margin-bottom: 10px;
-						}
-						.del{
-							font-size: 12px;
-							color: #999;
-							text-decoration: line-through;
-						}
-						.price{
-							font-size: 12px;
-							color: #bb361f;
+							width: 100%;
+							border-radius: 8px 8px 0 0;
 						}
 					}
-				}
-				.bottom::-webkit-scrollbar{
-					display: none;
+					.bottom{
+						display: flex;
+						background-color: #fff;
+						white-space: nowrap;
+						overflow: scroll;
+						border-radius: 0 0 8px 8px;
+						.product{
+							width: 100px;
+							padding-bottom: 10px;
+							border-right: 1px solid #e5e5e5;
+							text-align: center;
+							img{
+								width: 95px;
+								height: 95px;
+								vertical-align: middle;
+							}
+							.van-ellipsis{
+								font-size: 12px;
+								color: #313131;
+								margin-bottom: 10px;
+							}
+							.del{
+								font-size: 12px;
+								color: #999;
+								text-decoration: line-through;
+							}
+							.price{
+								font-size: 12px;
+								color: #bb361f;
+							}
+						}
+					}
+					.bottom::-webkit-scrollbar{
+						display: none;
+					}
 				}
 			}
+			
 		}
 		.base{
 			margin: 0 5px;
@@ -746,9 +755,13 @@
 										font-size: 15px;
 										color: #333;
 									}
-									.van-button{
+									.btn{
+										width: 70px;
+										text-align: center;
+										border-radius: 10px;
 										font-size: 12px;
 										color: #fff;
+										background-color: #bb3720;
 									}
 								}
 								.van-ellipsis{

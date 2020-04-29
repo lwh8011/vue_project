@@ -7,10 +7,12 @@
 				<img src="../assets/images/phone.png" alt="">
 				<input type="number" name="user" v-model="phone" placeholder="请输入手机号">
 			</div>
-			<div class="pwd">
-				<img src="../assets/images/checkCode.png" alt="">
-				<input type="number" name="sms" v-model="sms" placeholder="请输入验证码">
-				<van-button round size="small" @click="sendsms" style="background: inherit;margin-left: 35px;" color="#fff" plain>发送验证码</van-button>
+			<div class="pwd1">
+				<div class="left">
+					<img src="../assets/images/checkCode.png" alt="">
+					<input type="number" name="sms" v-model="sms" placeholder="请输入验证码">
+				</div>
+				<van-button round size="small" @click="sendsms" style="background: inherit;" color="#fff" plain>发送验证码</van-button>
 			</div>
 			<button class="btn" @click="login(1)">登录</button>
 			<button class="btns" @click="changeType(2)">用户名登录</button>
@@ -160,6 +162,34 @@
 					border: none;
 					outline: none;
 				}
+			}
+			.pwd1{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px 0;
+				border-bottom: 2px solid #fff;
+				.left{
+					display: flex;
+					align-items: center;
+					img{
+						width: 14px;
+						height: 18px;
+						margin-top: 2px;
+						vertical-align: bottom;
+					}
+					input{
+						height: 0.4rem;
+						line-height: 0.4rem;
+						color:white;
+						vertical-align: middle;
+						margin-left: 20px;
+						background: inherit;
+						border: none;
+						outline: none;
+					}
+				}
+				
 			}
 			p{
 				float: right;
