@@ -85,6 +85,7 @@
 		},
 		created(){
 			this.value = this.$route.query.key;
+			this.value = this.$route.params.name;
 			this.$api.searchAPI({
 				key:this.$route.query.key
 			}).then(res=>{

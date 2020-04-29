@@ -5,7 +5,7 @@
 		<div class="loginform">
 			<div class="user">
 				<img src="../assets/images/phone.png" alt="">
-				<input type="text" name="user" v-model="username" placeholder="请设置手机号/用户名">
+				<input type="text" name="user" v-model="username" placeholder="请设置用户名">
 			</div>
 			<div class="pwd">
 				<img src="../assets/images/imgCheck.png" alt="">
@@ -13,7 +13,7 @@
 			</div>
 			<div class="pwd">
 				<img src="../assets/images/imgCheck.png" alt="">
-				<input type="password" name="password" v-model="password2" placeholder="确认密码">
+				<input type="password" name="password" v-model="password2" @blur="sure" placeholder="确认密码">
 			</div>
 			<span>已有账户？去<router-link to="/login">登录</router-link></span>
 			<button @click="regist">注册</button>
@@ -46,6 +46,11 @@
 				}).catch(err=>{
 					console.log("注册失败！")
 				})
+			},
+			sure(){
+				if(this.password1!=this.password2){
+					this.$toast("密码输入不一致")
+				}
 			}
 		}
 	}
@@ -62,6 +67,7 @@
 		background-size: 100%;
 	}
 	.regist{
+		position: relative;
 		width: 100%;
 		height: 736px;
 		padding-top: 100px;
@@ -118,9 +124,11 @@
 			}
 		}
 		.skip{
+			position: absolute;
+			bottom: 40px;
+			left: 40%;
 			width: 1.3rem;
 			height: 0.48rem;
-			margin: 150px auto 0;
 			background: url(../assets/images/loginquit.png) no-repeat;
 			background-size: 100%;
 		}

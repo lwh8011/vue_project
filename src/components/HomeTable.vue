@@ -5,7 +5,7 @@
 			<div v-if="good.positionCode=='P12T1'">
 				<van-swipe :autoplay="3000">
 				  <van-swipe-item v-for="(image, index2) in good.positionList" :key="index2">
-				    <img :style="{width:'350px',height:'140px',borderRadius:'8px'}" v-lazy="image.bigImage" />
+				    <img :style="{width:'90%',height:'140px',borderRadius:'8px'}" v-lazy="image.bigImage" />
 				  </van-swipe-item>
 				</van-swipe>
 			</div>

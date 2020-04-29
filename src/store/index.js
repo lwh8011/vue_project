@@ -36,8 +36,8 @@ export default new Vuex.Store({
 	  addGood(state,good){
 		  let canAdd = true;
 		  state.goodList.forEach((item,index)=>{
-			  if(item.goodid==good.id){
-				  if(item.skuid==good.id){
+			  if(item.goodid==good.goodid){
+				  if(item.skuid==good.skuid){
 					  canAdd=false;
 					  item.num+=good.num
 				  }

@@ -12,6 +12,14 @@ mock.mock('https://3g.baobeigezi.com/index/search.php',function(){
 	}
 	return result;
 })
+//模拟短信发送接口
+mock.mock("http://520mg.com/mi/sms.php",function(){
+	let result = {
+		"code":0,
+		"result":"ok"
+	}
+	return result
+})
 //模拟详情数据
 mock.mock('https://3g.baobeigezi.com/index/product.php',function(){
 	let result = {

@@ -24,7 +24,7 @@
 								<img :src="list.image" alt="">
 							</div>
 							<div class="bottom">
-								<router-link :to="{name:'Detail',params:{id:pro.id}}" class="product" v-for="(pro,index) in list.childs">
+								<router-link :to="{name:'SearchResult',params:{name:pro.name}}" class="product" v-for="(pro,index) in list.childs">
 									<img :src="pro.image" alt="">
 									<div class="name">{{pro.name}}</div>
 								</router-link>
@@ -72,7 +72,7 @@
 			// console.log(category);
 			this.navs = cate[0].data;
 			this.datas = category;
-			console.log(this.datas)
+			// console.log(this.datas)
 		}
 	}
 </script>

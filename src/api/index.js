@@ -17,7 +17,10 @@ let getProductAPI = (data)=>{
 	})
 }
 
-
+//发送验证码
+let sendSMSAPI = (data)=>{
+	return axios.post("mi/sms.php",data)
+}
 //登录
 let loginAPI = (data)=>{
 	return axios.post("index/login.php",data)
@@ -31,5 +34,6 @@ export {
 	searchAPI,
 	loginAPI,
 	registAPI,
-	getProductAPI
+	getProductAPI,
+	sendSMSAPI
 }

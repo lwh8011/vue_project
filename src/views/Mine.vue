@@ -39,6 +39,43 @@
 				<a href="#"><van-icon color="#323232" name="after-sale" size="30" /><span>退款/售后</span></img></a>
 			</div>
 		</div>
+		<div class="myinfo">
+			<div class="info">
+				<div class="left">
+					<van-icon name="phone-circle-o" size="28" style="line-height: inherit;" />
+					<span>绑定手机号</span>
+				</div>
+				<van-icon name="arrow" style="line-height: inherit;" />
+			</div>
+			<div class="info">
+				<div class="left">
+					<van-icon name="bag-o" size="28" style="line-height: inherit;" />
+					<span>我的拼团</span>
+				</div>
+				<van-icon name="arrow" style="line-height: inherit;" />
+			</div>
+			<div class="info">
+				<div class="left">
+					<van-icon name="service-o" size="28" style="line-height: inherit;" />
+					<span>客服帮助</span>
+				</div>
+				<van-icon name="arrow" style="line-height: inherit;" />
+			</div>
+			<div class="info">
+				<div class="left">
+					<van-icon name="user-circle-o" size="28" style="line-height: inherit;" />
+					<span>身份证信息</span>
+				</div>
+				<van-icon name="arrow" style="line-height: inherit;" />
+			</div>
+			<div class="info">
+				<div class="left">
+					<van-icon name="lock" size="28" style="line-height: inherit;" />
+					<span>支付密码</span>
+				</div>
+				<van-icon name="arrow" style="line-height: inherit;" />
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -69,6 +106,8 @@
 		box-sizing: border-box;
 	}
 	.mine{
+		background-color: #F4F4F4;
+		padding-bottom: 80px;
 		.top{
 			width: 100%;
 			height: 4.8rem;
@@ -154,6 +193,26 @@
 						margin-top: 16px;
 						color:#323232;
 						font-size: 14px;
+					}
+				}
+			}
+		}
+		.myinfo{
+			margin-top: 20px;
+			background-color: #fff;
+			.info{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 15px 10px;
+				border-bottom: 1px solid #F4F4F4;
+				.left{
+					display: flex;
+					align-items: center;
+					span{
+						margin-left: 20px;
+						font-size: 15px;
+						color: #313131;
 					}
 				}
 			}

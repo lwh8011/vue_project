@@ -2,17 +2,31 @@
 	<div class="login">
 		<div class="logo">	
 		</div>
-		<div class="loginform">
+		<div class="tel" v-if="loginType==1">
 			<div class="user">
 				<img src="../assets/images/phone.png" alt="">
-				<input type="text" name="user" v-model="username" placeholder="请输入手机号/用户名">
+				<input type="number" name="user" v-model="phone" placeholder="请输入手机号">
+			</div>
+			<div class="pwd">
+				<img src="../assets/images/checkCode.png" alt="">
+				<input type="number" name="sms" v-model="sms" placeholder="请输入验证码">
+				<van-button round size="small" @click="sendsms" style="background: inherit;margin-left: 35px;" color="#fff" plain>发送验证码</van-button>
+			</div>
+			<button class="btn" @click="login(1)">登录</button>
+			<button class="btns" @click="changeType(2)">用户名登录</button>
+		</div>
+		<div class="loginform" v-if="loginType==2">
+			<div class="user">
+				<img src="../assets/images/phone.png" alt="">
+				<input type="text" name="user" v-model="username" placeholder="请输入用户名">
 			</div>
 			<div class="pwd">
 				<img src="../assets/images/imgCheck.png" alt="">
 				<input type="password" name="password" v-model="password" placeholder="请输入密码">
 			</div>
-			<span>没有账户？去<router-link to="/regist">注册</router-link></span>
-			<button @click="login">登录</button>
+			<p>没有账户？去<router-link to="/regist">注册</router-link></p>
+			<button class="btn" @click="login(2)">登录</button>
+			<button class="btns" @click="changeType(1)">手机号登录</button>
 		</div>
 		<div class="skip" @click="goReturn"></div>
 	</div>
@@ -22,6 +36,9 @@
 	export default{
 		data(){
 			return{
+				loginType:1,
+				sms:"",
+				phone:"",
 				username:"",
 				password:""
 			}
@@ -30,26 +47,69 @@
 			goReturn(){
 				this.$router.push("/")
 			},
-			login(){
-				this.$api.loginAPI({
-					dopost:"login",
-					username:this.username,
-					pwd:this.password
-				}).then(res=>{
-					if(res.data.code==0){
-						this.$JsCookie.set('username', this.username, { expires: 7 }) 
-						let next = this.$route.query.next
-						if(next){
-							this.$router.push(next)
-						}else{
-							this.$router.push("/")
+			sendsms(){
+				if(this.phone.length <= 0){
+					this.$toast("请输入手机号！")
+				}else{
+					this.$api.sendSMSAPI({
+						tel:this.phone,
+						type:"regist"
+					}).then(res=>{
+						// console.log("收到信息",res.data)
+						if(res.data.code==0){
+							this.$toast("验证码已发送")
 						}
-					}
-				}).catch(err=>{
-					console.log("登录失败",err)
-				})
+					}).catch(err=>{
+						console.log("出错原因",err)
+					})
+				}
+			},
+			changeType(type){
+				this.loginType = type;
+			},
+			login(type){
+				if(type==1){
+					this.$api.loginAPI({
+						fmdo:"tel",
+						dopost:"login",
+						telephone:this.phone,
+						sms:this.sms
+					}).then(res=>{
+						if(res.data.code==0){
+							this.$JsCookie.set('username', this.phone, { expires: 7 }) 
+							let next = this.$route.query.next
+							if(next){
+								this.$router.push(next)
+							}else{
+								this.$router.push("/mine")
+							}
+						}
+					}).catch(err=>{
+						console.log("登录失败",err)
+					})
+				}else if(type==2){
+					this.$api.loginAPI({
+						fmdo:"loginform",
+						dopost:"login",
+						username:this.username,
+						pwd:this.password
+					}).then(res=>{
+						if(res.data.code==0){
+							this.$JsCookie.set('username', this.username, { expires: 7 }) 
+							let next = this.$route.query.next
+							if(next){
+								this.$router.push(next)
+							}else{
+								this.$router.push("/mine")
+							}
+						}
+					}).catch(err=>{
+						console.log("登录失败",err)
+					})
+				}
+				
 			}
-		}
+		},
 	}
 </script>
 
@@ -64,6 +124,7 @@
 		background-size: 100%;
 	}
 	.login{
+		position: relative;
 		width: 100%;
 		height: 736px;
 		padding-top: 100px;
@@ -76,10 +137,11 @@
 			background: url(../assets/images/logo.png) no-repeat;
 			background-size: 100%;
 		}
-		.loginform{
+		.loginform,.tel{
 			padding: 60px 35px 0;
 			.user,.pwd{
 				display: flex;
+				align-items: center;
 				padding: 20px 0;
 				border-bottom: 2px solid #fff;
 				img{
@@ -99,7 +161,7 @@
 					outline: none;
 				}
 			}
-			span{
+			p{
 				float: right;
 				margin-right: 20px;
 				margin-top: 20px;
@@ -108,21 +170,27 @@
 					color: #FF5809;
 				}
 			}
-			button{
+			.btn,.btns{
 				width: 100%;
 				height: 0.88rem;
-				margin-top: 40px;
+				margin-top: 30px;
 				font-size: 0.3rem;
 				background-color: #fff;
 				border: none;
 				outline: none;
 				border-radius: 8px;
 			}
+			.btns{
+				margin-top: 20px;
+			}
 		}
 		.skip{
+			position: absolute;
+			bottom: 40px;
+			left: 40%;
 			width: 1.3rem;
 			height: 0.48rem;
-			margin: 200px auto 0;
+			margin: auto;
 			background: url(../assets/images/loginquit.png) no-repeat;
 			background-size: 100%;
 		}
