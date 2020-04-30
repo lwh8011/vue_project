@@ -396,10 +396,10 @@
 				font-size: 15px;
 				color: #595959;
 				.left{
-					width: 20%;
+					width: 30%;
 				}
 				.right{
-					width: 80%;
+					width: 70%;
 				}
 			}
 		}
